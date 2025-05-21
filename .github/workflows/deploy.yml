@@ -1,4 +1,4 @@
-name: Python to GitHub Pages
+name: Python to GitHub Page
 
 on:
   push:
