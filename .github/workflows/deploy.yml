@@ -3,7 +3,7 @@ name: Python to GitHub Pages
 on:
   push:
     branches:
-      - main  # 또는 master, 사용하는 브랜치 이름에 따라 수정
+      - main  # 또는 master
 
 permissions:
   contents: read
@@ -29,7 +29,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'  # output.html이 있는 경로
+          path: '.'
 
   deploy:
     needs: build
