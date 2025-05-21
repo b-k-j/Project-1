@@ -27,7 +27,7 @@ jobs:
       run: python hello.py
 
     - name: Upload dummy artifact to fix runner issue
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2  # v3 대신 v2 사용!
       with:
         name: dummy
         path: output.html
