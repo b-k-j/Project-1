@@ -16,4 +16,4 @@ jobs:
 
     - name: Test raw SSH connection
       run: |
-        ssh -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo '[✔] 연결 성공'; whoami; uname -a"
+        ssh -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo '연결 성공'; whoami; uname -a"
