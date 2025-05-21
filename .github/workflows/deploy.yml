@@ -1,9 +1,9 @@
-name: Python to GitHub Page
+name: Python to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # 또는 master
+      - main
 
 permissions:
   contents: read
@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Python
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.10
@@ -26,10 +26,10 @@ jobs:
     - name: Run Python script
       run: python hello.py
 
-    - name: Upload generated HTML
+    - name: Upload pages artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: '.'  # output.html이 있는 경로
+        path: '.'  # output.html이 있는 위치
 
   deploy:
     needs: build
