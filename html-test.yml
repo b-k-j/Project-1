@@ -1,18 +1,23 @@
-name: Test HTML Workflow
+name: Test SSH Connection to EC2
 
 on:
-  push:
-    branches: [ main ]  # 또는 master
+  workflow_dispatch:  # 수동 실행 전용
 
 jobs:
-  test-html:
+  ssh-test:
+    name: SSH Test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Show HTML file
-      run: |
-        echo "== test.html 내용 =="
-        cat test.html
+    - name: Test SSH connection
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.BJ_KIM_S }}
+        port: 22
+        debug: true
+        script: |
+          echo "[✔] SSH 연결 성공"
+          whoami
+          uname -a
