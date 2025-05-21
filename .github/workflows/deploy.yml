@@ -26,12 +26,6 @@ jobs:
     - name: Run Python script
       run: python hello.py
 
-    - name: Upload dummy artifact to fix runner issue
-      uses: actions/upload-artifact@v2  # v3 대신 v2 사용!
-      with:
-        name: dummy
-        path: output.html
-
     - name: Upload pages artifact
       uses: actions/upload-pages-artifact@v2
       with:
