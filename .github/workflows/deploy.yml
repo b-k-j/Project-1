@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Set up Python
@@ -26,10 +26,16 @@ jobs:
     - name: Run Python script
       run: python hello.py
 
+    - name: Upload dummy artifact to fix runner issue
+      uses: actions/upload-artifact@v3
+      with:
+        name: dummy
+        path: output.html
+
     - name: Upload pages artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: '.'  # output.html이 있는 위치
+        path: '.'
 
   deploy:
     needs: build
