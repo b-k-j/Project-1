@@ -1,23 +1,19 @@
 name: Test SSH Connection to EC2
 
 on:
-  workflow_dispatch:  # 수동 실행 전용
+  workflow_dispatch:
 
 jobs:
   ssh-test:
-    name: SSH Test
+    name: SSH Test (manual key setup)
     runs-on: ubuntu-latest
 
     steps:
-    - name: Test SSH connection
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.BJ_KIM_S }}
-        port: 22
-        debug: true
-        script: |
-          echo "[✔] SSH 연결 성공"
-          whoami
-          uname -a
+    - name: Write private key to file
+      run: |
+        echo "${{ secrets.BJ_KIM_S }}" > id_rsa
+        chmod 600 id_rsa
+
+    - name: Test raw SSH connection
+      run: |
+        ssh -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo '[✔] 연결 성공'; whoami; uname -a"
