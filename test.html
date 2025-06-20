@@ -2,14 +2,30 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Redirecting...</title>
+  <title>신한 유니버설 링크 테스트</title>
   <script type="text/javascript">
-    function open() {
+    // 페이지 로드시 실행 (기존 auto redirect)
+    function openDefault() {
       window.location.href = "https://payfan.shinhancard.com/universalLink/link.jsp?schema=shinhan-appcard://deeplink";
+    }
+
+    // 버튼 A 클릭 시 실행
+    function openA() {
+      window.location.href = "https://payfan.shinhancard.com/universalLink/link.jsp?schema=shinhan-appcard://deeplink?screenid=test";
+    }
+
+    // 버튼 B 클릭 시 실행
+    function openB() {
+      window.location.href = "https://payfan.shinhancard.com/universalLink/link.jsp?schema=shinhan-sr-ansimclick://pay?srcode=000000";
     }
   </script>
 </head>
-<body onload="open()">
-  <p>잠시만 기다려주세요...</p>
+<body>
+  <h1>신한 유니버설 링크 테스트</h1>
+
+  <p>페이지가 자동으로 열리지 않으면 아래 버튼을 눌러주세요.</p>
+
+  <button onclick="openA()">🔵 버튼 A (예: 포인트 페이지)</button><br><br>
+  <button onclick="openB()">🟢 버튼 B (예: 카드 신청 페이지)</button>
 </body>
 </html>
